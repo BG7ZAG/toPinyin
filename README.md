@@ -32,18 +32,21 @@ NH
 import toPinyin from "./toPinyin";
 
 /**
- * 根据拼音首字母筛选排序分组，注意原数组需要筛选排序的字段是name，如不是自行修改
+ * 根据拼音首字母筛选排序分组
  * @param {Array} arr 原数组
+ * @param {String} key 原数组需要筛选的字段
+ * @returns {Array} 返回一个[{name: A,value: []}] 格式的二维数组
  */
-export function getGroupByPinyin(arr) {
+export function getGroupByPinyin(arr, key = 'name') {
+    if(!arr) return
+    
     // 获取A-Z字母数组
     let keys = [...Array(26).keys()].map((i) => String.fromCharCode(i + 65));
     
-    // 原数组添加py字段，其中name字段注意修改
     arr = arr.map((n) => ({
         ...n,
         py: toPinyin.chineseToInitials(
-            toPinyin.chineseToPinYin(n.name.substr(0, 1))
+            toPinyin.chineseToPinYin(n[key].substr(0, 1))
         ),
     }));
 
@@ -61,7 +64,7 @@ export function getGroupByPinyin(arr) {
         }
         if (item.value.length > 0) {
             // 注意name字段
-            item.value.sort((a, b) => a.name.localeCompare(b.name));
+            item.value.sort((a, b) => a[key].localeCompare(b[key]));
             group.push(item);
         }
     }
