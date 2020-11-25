@@ -1,3 +1,10 @@
+<!--
+ * @Autor: hlb
+ * @Date: 2020-11-25 17:55:43
+ * @LastEditors: hlb
+ * @LastEditTime: 2020-11-25 18:37:46
+ * @description: description
+-->
 # toPinyin
 # uniapp 文字汉字一键转拼音，转简写，转首字母 
 封装了下使用方法，原作者: lieft@qq.com https://ext.dcloud.net.cn/plugin?id=3294
@@ -63,7 +70,6 @@ export function getGroupByPinyin(arr, key = 'name') {
             }
         }
         if (item.value.length > 0) {
-            // 注意name字段
             item.value.sort((a, b) => a[key].localeCompare(b[key]));
             group.push(item);
         }

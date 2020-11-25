@@ -2,7 +2,7 @@
  * @Autor: hlb
  * @Date: 1970-01-01 08:00:00
  * @LastEditors: hlb
- * @LastEditTime: 2020-11-25 18:33:55
+ * @LastEditTime: 2020-11-25 18:37:34
  * @description: 工具
  */
 import toPinyin from "./toPinyin";
@@ -39,7 +39,6 @@ export function getGroupByPinyin(arr, key = 'name') {
             }
         }
         if (item.value.length > 0) {
-            // 注意name字段
             item.value.sort((a, b) => a[key].localeCompare(b[key]));
             group.push(item);
         }
